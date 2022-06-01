@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+sqlalchemy
+python-decouple
+psycopg2-binary
+fastapi_utils
