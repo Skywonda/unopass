@@ -15,12 +15,11 @@ class UserRepository:
     def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
-    def get_all_user(self, limit: int = 0, skip: int = 0) -> List[User]:
+    def get_all_user(self, limit: int = 10, skip: int = 0) -> List[User]:
         """
         Get all the user from the database
         """
-        user = self.db.query(User).limit(limit).offset(skip).all()
-        return user
+        return self.db.query(User).limit(limit).offset(skip).all()
 
     def get_by_id(self, user_id) -> User:
         """

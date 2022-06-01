@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import Depends
+from fastapi import Depends, status
 from fastapi_utils.cbv import cbv
 from fastapi_utils.inferring_router import InferringRouter
 
@@ -25,7 +25,7 @@ class UserRouter:
         """
         return self.user_services.create_user(create)
 
-    @router.get("/", response_model=List[ReadUser], status_code=201)
+    @router.get("/", response_model=List[ReadUser], status_code=status.HTTP_200_OK)
     def get_all_user(self):
         """
         Get all users
