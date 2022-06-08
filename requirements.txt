@@ -6,3 +6,5 @@ psycopg2-binary
 fastapi_utils
 python-jose
 python-multipart
+heroku
+gunicorn
