@@ -26,6 +26,7 @@ class UserRepository:
         Get users by id in the database
         """
         user = self.db.query(User).get(user_id)
+        return user
 
     def get_by_email(self, user_email) -> User:
         """

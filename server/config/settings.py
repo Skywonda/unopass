@@ -15,5 +15,8 @@ class Setting:
         f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DATABASE}"
     )
 
+    SECRET_KEY:str = config("SECRET_KEY")
+    ALGORITHM = "HS256"
+    ACCESS_TOKEN_EXPIRES_MINUTES = 30
 
 settings = Setting()
