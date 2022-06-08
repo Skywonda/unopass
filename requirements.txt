@@ -7,4 +7,3 @@ fastapi_utils
 python-jose
 python-multipart
 heroku
-gunicorn
