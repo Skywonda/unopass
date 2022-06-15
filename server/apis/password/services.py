@@ -1,6 +1,5 @@
 from typing import List
 from fastapi import Depends, HTTPException, status
-from requests import delete
 
 from server.apis.password.repository import PasswordRepository
 from server.apis.password.schemas import CreatePassword, EditPassword
