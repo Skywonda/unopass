@@ -40,5 +40,5 @@ class PasswordServices:
     def delete_password_by_platform(self, platform : str, owner_id : str):
         action = self.password_repository.delete_password(platform=platform, owner_id=owner_id)
         if not action:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"{platform}not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"{platform} not found")
         return action
