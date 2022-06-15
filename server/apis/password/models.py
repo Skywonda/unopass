@@ -1,6 +1,7 @@
 from sqlalchemy import Column, ForeignKey, String, Integer
 from sqlalchemy.orm import relationship
 from  server.config.database import Base
+from server.apis.password.schemas import ShowPassword
 
 class Password(Base):
     __tablename__ = "passwords"
@@ -11,5 +12,5 @@ class Password(Base):
     owner_id = Column(Integer, ForeignKey("users.id"))
     owner = relationship("User", back_populates = "user_saved_passwords")
 
-    def __repr__(self):
-        return f"platform : {self.platfrom}, id : {self.owner_id}"
+    def __repr__(self) -> ShowPassword:
+        return f"id : {self.id}, platform : {self.platform}, username : {self.username}, password : {self.password} , owner_id : {self.owner_id}"

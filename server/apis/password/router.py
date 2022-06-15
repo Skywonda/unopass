@@ -1,6 +1,6 @@
 from typing import List
 from typing_extensions import Self
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from fastapi_utils.cbv import cbv
 
 from server.apis.password.schemas import CreatePassword, EditPassword, ShowPassword
@@ -26,17 +26,21 @@ class PasswordRouter:
         """
         return self.password_services.save_password(password= password, owner_id=self.current_user.id)
 
-    @router.get("/get", response_model=List[ShowPassword])
+    @router.get("/", response_model=List[ShowPassword])
     def get_list_of_user_password(self):
         """
         Get list of user password
         """
         return self.password_services.get_list_of_user_password(self.current_user.id)
 
-    @router.get("/get/all/")
+    @router.get("/{platform}")
     def def_password_by_platfrom(self, platform : str):
-        return self.password_services.get_password_by_platform(platform)
+        return self.password_services.get_password_by_platform(platform, self.current_user.id)
 
     @router.put("/edit", response_model=ShowPassword)
-    def edit_password(self, id : int, password : EditPassword):
-        return self.password_services.update_password_by_id(id=id, password=password, owner_id=self.current_user.id)
+    def edit_password(self, password : EditPassword, platform : str):
+        return self.password_services.update_password_by_id(owner_id=self.current_user.id, password=password, platform=platform)
+
+    @router.delete("/remove", status_code=status.HTTP_202_ACCEPTED)
+    def delete_password(self, platform : str):
+        return self.password_services.delete_password_by_platform(platform=platform, owner_id=self.current_user.id)

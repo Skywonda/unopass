@@ -30,7 +30,7 @@ def login_for_access_token(form_data : OAuth2PasswordRequestForm = Depends(), db
     access_token = create_access_token(data={"sub" : user.email})
     return {"access_token" : access_token, "token_type" : "bearer"}
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/tester/login/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login/token")
 
 def get_current_from_token(token : str = Depends(oauth2_scheme), db : Session = Depends(get_db)):
     credential_expection = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate Credentials")
