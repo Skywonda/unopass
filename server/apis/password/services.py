@@ -42,3 +42,4 @@ class PasswordServices:
         if not action:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"{platform} not found")
         return action
+
