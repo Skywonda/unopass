@@ -15,7 +15,7 @@ class UserRepository:
     def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
-    def get_all_user(self, limit: int = 10, skip: int = 0) -> List[User]:
+    def get_all_user(self, limit: int = None, skip: int = 0) -> List[User]:
         """
         Get all the user from the database
         """
